@@ -8,6 +8,7 @@ class Exit:
     def __init__(self, exit_type, needs=None):
         self.type = exit_type
         self.needs = needs or []
+
 class Room:
     def __init__(self, directions=None, items=None, monster=None, info='', exit:Exit=None):
         self.directions = directions or {}
@@ -22,9 +23,9 @@ class Being:
         self.attack_power = attack
         self.defence = defence
         self.name = name
-    
+
     def calculate_damage(self, target):
-        if type(target) == Monster or type(target) == Player:
+        if issubclass(type(target), Being):
             max_damage = self.attack_power + 2
             min_damage = max_damage // 2
             base_damage = random.randint(min_damage, max_damage)
@@ -32,9 +33,9 @@ class Being:
             if damage < 0:
                 damage = 0
             return damage
-    
+
     def attack(self, target):
-        if type(target) == Monster or type(target) == Player:
+        if issubclass(type(target), Being):
             end_damage = self.calculate_damage(target)
             target.health -= end_damage
             print(
@@ -52,7 +53,7 @@ class Being:
             if target.health <= 0:
                 target.health = 0
                 target.die()
-    
+
     def die(self):
         print(f'{self.name} died!')
         if type(self) == Player:
@@ -280,6 +281,8 @@ def quit(time_to_wait: int=0):
 
 def battle(player:Player, monster:Monster):
     print(f'A {monster.type} attacks you!')
+    print(f'Enemy health: {monster.health}')
+    print(f'Your health: {player.health}')
     while player.health > 0 and monster.health > 0:
         input_ = input('Do you want to run or attack? ').strip().lower()
         if input_ == 'run':
@@ -287,8 +290,7 @@ def battle(player:Player, monster:Monster):
             print('You ran away!')
             return
         elif input_ == 'attack':
-            print(f'Enemy health: {monster.health}')
-            print(f'Your health: {player.health}')
+            
             player.attack(monster)
             if monster.health > 0:
                 monster.attack(player)
@@ -347,49 +349,54 @@ commands = {
     },
 }
 
-show_instructions()
 
-# Loop forever
-while True:
+def main():
+    # Show the instructions
+    show_instructions()
 
-    show_status()
+    # Loop forever
+    while True:
 
-    # Get the player's next 'move'
-    # parse_command() breaks it up into a list array
-    # eg typing 'go east' would give the list:
-    # ['go', 'east'] because go is a commannd and east is the direction,
-    # but if a multiword command is added to the game, it will show
-    # something like this (the bit where it says 'multiword command'
-    # is where the multiword command would be, and the bit where it says
-    # 'argument(s)' is where the argument(s) would be):
-    # ['multiword command', 'argument(s)']
-    command = ''
-    while command == '':
-        command = input('>')
+        show_status()
 
-    command = parse_command(command)
+        # Get the player's next 'move'
+        # parse_command() breaks it up into a list array
+        # eg typing 'go east' would give the list:
+        # ['go', 'east'] because go is a commannd and east is the direction,
+        # but if a multiword command is added to the game, it will show
+        # something like this (the bit where it says 'multiword command'
+        # is where the multiword command would be, and the bit where it says
+        # 'argument(s)' is where the argument(s) would be):
+        # ['multiword command', 'argument(s)']
+        command = ''
+        while command == '':
+            command = input('>')
 
-    room = rooms[player.current_room]
-    if type(room) == Room:
-        if (room.exit and
-            'needs' in rooms[player.current_room].exit):
-            if all(x in player.inventory for x in rooms[player.current_room].exit.needs):
-                print('You escaped the house... YOU WIN!')
-                sys.exit()
-            else:
-                print(
-                    'You need ' +
-                    ', '.join(rooms[player.current_room].exit.needs) +
-                    ' to escape!'
-                )
+        command = parse_command(command)
 
-        if command and len(command) >= 2:
-            commands[command[0]]["command"](*command[1:])
-        else:
-            print('Invalid command!')
-        DEBUG('after command')
         room = rooms[player.current_room]
+        if type(room) == Room:
+            if (room.exit and
+                'needs' in rooms[player.current_room].exit):
+                if all(x in player.inventory for x in rooms[player.current_room].exit.needs):
+                    print('You escaped the house... YOU WIN!')
+                    sys.exit()
+                else:
+                    print(
+                        'You need ' +
+                        ', '.join(rooms[player.current_room].exit.needs) +
+                        ' to escape!'
+                    )
 
-        if room.monster:
-            DEBUG('Monster')
-            handle_monster(room)
+            if command and len(command) >= 2:
+                commands[command[0]]["command"](*command[1:])
+            else:
+                print('Invalid command!')
+            
+            room = rooms[player.current_room]
+
+            if room.monster:
+                handle_monster(room)
+
+if __name__ == '__main__':
+    main()
