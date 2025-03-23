@@ -8,17 +8,13 @@ In this game, you start in a hall and must navigate through different rooms, col
 
 ## Installation
 
-1. Clone the repository:
+1. install the module:
     ```sh
-    git clone https://github.com/yourusername/T-BAG.git
+    pip install --no-cache-dir T-BAG
     ```
-2. Navigate to the project directory:
+2. Run the game:
     ```sh
-    cd T-BAG
-    ```
-3. Run the game:
-    ```sh
-    python T-BAG_main.py
+    python -m T_BAG
     ```
 
 ## Usage
