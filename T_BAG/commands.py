@@ -3,6 +3,7 @@ from . import utils as u
 global commands
 
 def show_commands(commands_to_show=0):
+    global commands
     try:
         if type(commands_to_show) == list:
             commands_to_show = commands_to_show[0]
@@ -30,6 +31,7 @@ def show_commands(commands_to_show=0):
 # A function to split an innput str into a list, with the first entry being
 # the command, which may be multiple words
 def parse_command(command: str) -> list:
+    global commands
     for key in commands.keys():
         u.DEBUG('Checking command "' + command + '" with key "' + key + '"')
         if command.startswith(key):
