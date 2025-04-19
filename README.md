@@ -1,10 +1,12 @@
 # T-BAG (Text-Based Adventure Game)
 
-T-BAG is a text-based RPG game where the player navigates through different rooms, collects items, and avoids monsters to reach the garden and win the game.
+T-BAG is a text-based RPG game where the player navigates through different rooms, collects items, and avoids
+monsters to reach the garden and win the game.
 
 ## Description
 
-In this game, you start in a hall and must navigate through different rooms, collecting items and avoiding monsters. Your goal is to reach the garden with the key and a potion to win the game.
+In this game, you start in a hall and must navigate through different rooms, collecting items and avoiding monsters.
+Your goal is to reach the garden with the key and a potion to win the game.
 
 ## Installation
 
@@ -16,6 +18,10 @@ In this game, you start in a hall and must navigate through different rooms, col
     ```sh
     python -m T_BAG
     ```
+3. Uninstall so you can update it:
+    ```sh
+    pip uninstall T_BAG
+    ```
 
 ## Usage
 
@@ -23,11 +29,11 @@ In this game, you start in a hall and must navigate through different rooms, col
     ```sh
     go east
     ```
-- Use the [get](http://_vscodecontentref_/0) command to pick up an item. For example:
+- Use the `get` command to pick up an item. For example:
     ```sh
     get key
     ```
-- Use the [quit](http://_vscodecontentref_/1) command to exit the game. For example:
+- Use the `quit` command to exit the game. For example:
     ```sh
     quit 5
     ```
@@ -35,13 +41,15 @@ In this game, you start in a hall and must navigate through different rooms, col
 ## Commands
 
 - `go [direction]`: Move to a different room.
-- [get [item]](http://_vscodecontentref_/2): Pick up an item from the room.
-- [quit [seconds]](http://_vscodecontentref_/3): Quit the game after waiting for the specified number of seconds.
-- `help [number]`: Show the list of commands. If a number is provided, show that many commands; otherwise, show all commands.
+- `get [item]`: Pick up an item from the room.
+- `quit [seconds]`: Quit the game after waiting for the specified number of seconds.
+- `help [number]`: Show the list of commands. If a number is provided, show that many commands; otherwise, show all
+commands.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes. The
+rules for contributing are [here](docx/CONTRIBUTING.md).
 
 ## License
 
