@@ -192,6 +192,17 @@ commands = {
 
 def main():
     # Show the instructions
+    print("Loading...")
+    time.sleep(0.1)
+    print("Setting up player...")
+    time.sleep(0.1)
+    print("Setting up command functions...")
+    time.sleep(0.1)
+    print("Setting up commands dictionary...")
+    time.sleep(0.1)
+    print("Finishing up...")
+    time.sleep(0.1)
+    print("Done!\n\n")
     show_instructions()
 
     # Loop forever

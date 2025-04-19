@@ -1,6 +1,7 @@
 from . import utils as u
 
 global commands
+commands = {}
 
 def show_commands(commands_to_show=0):
     global commands
