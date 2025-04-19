@@ -42,9 +42,11 @@ Your goal is to reach the garden with the key and a potion to win the game.
 
 - `go [direction]`: Move to a different room.
 - `get [item]`: Pick up an item from the room.
-- `quit [seconds]`: Quit the game after waiting for the specified number of seconds.
-- `help [number]`: Show the list of commands. If a number is provided, show that many commands; otherwise, show all
-commands.
+- `quit [seconds]`: Quit the game after waiting for the specified number of
+seconds.
+- `help [number]`: Show the list of commands. If a number is provided, show
+that many commands; put 0 to print all the commands.
+- `drop [item]`: Drop an item into the room you are in.
 
 ## Contributing
 

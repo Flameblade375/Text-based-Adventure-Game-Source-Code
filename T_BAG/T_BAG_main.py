@@ -161,7 +161,7 @@ def handle_monster(room: r.Room):
             else:
                 battle(player, monster)
 
-commands = {
+c.commands = {
     'go': {
         "command": move,
         "description": "Move to a different room",
@@ -241,7 +241,7 @@ def main():
                     )
 
             if command and len(command) >= 2:
-                commands[command[0]]["command"](*command[1:])
+                c.commands[command[0]]["command"](*command[1:])
             else:
                 print('Invalid command!')
 
