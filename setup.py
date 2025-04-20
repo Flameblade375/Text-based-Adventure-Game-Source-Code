@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="T_BAG",
-    version="1.1.0",  # Update version number for each release
+    version="1.1.1",  # Update version number for each release
     packages=find_packages(),  # Automatically finds all packages and modules
     install_requires=[],
     entry_points={

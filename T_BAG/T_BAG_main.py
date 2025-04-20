@@ -36,6 +36,7 @@ def show_status():
     print('Level: ' + str(player.level))
     # Print the current inventory
     print('Inventory: ' + str(player.inventory))
+    print(r.directions(player.current_room))
     print(r.rooms[player.current_room].info)
     print("---------------------------")
 
@@ -112,6 +113,16 @@ def drop(*item_names):
             # Tell them they can't drop it
             print(f'Can\'t drop {item_name}!')
 
+def look(*Args):
+    print('You see:')
+    # Print the items in the room
+    if type(r.rooms[player.current_room]) == r.Room:
+        if r.rooms[player.current_room].items:
+            print(', '.join(i.name for i in r.rooms[player.current_room].items))
+        else:
+            print('Nothing!')
+
+
 def battle(player:b.Player, monster:b.Monster):
     print(f'A {monster.type} attacks you!')
     print(f'Enemy health: {monster.health}')
@@ -165,7 +176,7 @@ c.commands = {
     'go': {
         "command": move,
         "description": "Move to a different room",
-        "args": "one or more diractions",
+        "args": "one or more directions",
     },
     'get': {
         "command": get,

@@ -47,6 +47,9 @@ seconds.
 - `help [number]`: Show the list of commands. If a number is provided, show
 that many commands; put 0 to print all the commands.
 - `drop [item]`: Drop an item into the room you are in.
+- `look [anything]`: Look around the room you are currently in. You can enter
+anything after the `look` command, but you must enter something, because of
+how I handle commands
 
 ## Contributing
 

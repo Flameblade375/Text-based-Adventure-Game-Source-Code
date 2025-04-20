@@ -18,6 +18,7 @@ class Room:
             info='',
             exit:Exit=None,
             events:list[e.Event]=[],
+            type:str='house',
         ):
         self.directions = directions or {}
         self.items = items or []
@@ -25,6 +26,25 @@ class Room:
         self.info = info
         self.exit = exit
         self.events = events
+
+roomDirectionText = {
+    'house': {
+        'north': 'There is a door to the north',
+        'south': 'There is a door to the south',
+        'east': 'There is a door to the east',
+        'west': 'There is a door to the west',
+        'up': 'There is a staircase going up',
+        'down': 'There is a staircase going down',
+    },
+}
+
+def directions(currentRoom):
+    text = ''
+    if currentRoom in rooms:
+        for direction in rooms[currentRoom].directions:
+            if direction in roomDirectionText[rooms[currentRoom].type]:
+                text += roomDirectionText[rooms[currentRoom].type][direction] + '\n'
+    return text
 
 # A dictionary linking a room to other rooms
 rooms = {
