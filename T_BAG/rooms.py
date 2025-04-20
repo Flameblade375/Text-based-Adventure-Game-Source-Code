@@ -18,7 +18,7 @@ class Room:
             info='',
             exit:Exit=None,
             events:list[e.Event]=[],
-            type:str='house',
+            rtype:str='house',
         ):
         self.directions = directions or {}
         self.items = items or []
@@ -26,6 +26,7 @@ class Room:
         self.info = info
         self.exit = exit
         self.events = events
+        self.type = rtype
 
 roomDirectionText = {
     'house': {
