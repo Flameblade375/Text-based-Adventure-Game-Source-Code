@@ -197,7 +197,12 @@ c.commands = {
         "command": drop,
         "description": "Drop an item into the current room",
         "args": "one or more items",
-    }
+    },
+    'look': {
+        "command": look,
+        "description": "Look around the room",
+        "args": "anything",
+    },
 }
 
 
